@@ -24,3 +24,23 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    datos = 'files/input/data.csv'
+    conteo_claves = {}
+
+    with open(datos, 'r', encoding='utf-8') as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split('\t')  
+            if len(columnas) > 4:  
+                diccionario_codificado = columnas[4] 
+                # Divido en pares clave:valor 
+                pares = diccionario_codificado.split(',')  
+                for par in pares:
+                    try:
+                        clave, _ = par.split(':')  
+                        conteo_claves[clave] = conteo_claves.get(clave, 0) + 1  
+                    except ValueError:
+                        pass  
+
+    conteo_claves_ordenado = dict(sorted(conteo_claves.items()))
+
+    return(conteo_claves_ordenado)

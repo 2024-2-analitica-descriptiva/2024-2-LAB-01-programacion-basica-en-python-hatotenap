@@ -26,3 +26,21 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    datos = 'files/input/data.csv'
+
+    conteo_por_mes = {}
+
+    with open(datos, 'r', encoding='utf-8') as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split('\t')  
+            if len(columnas) > 2:  
+                fecha = columnas[2]  
+                try:
+                    mes = fecha.split('-')[1]  
+                    conteo_por_mes[mes] = conteo_por_mes.get(mes, 0) + 1
+                except (IndexError, ValueError):
+                    pass  
+
+    
+    resultado = sorted(conteo_por_mes.items())
+    return resultado

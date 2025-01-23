@@ -15,3 +15,27 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+
+    datos = 'files/input/data.csv'
+
+    suma_por_letra = {}
+
+    with open(datos, 'r', encoding='utf-8') as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split('\t')
+            if len(columnas) > 1:
+                letra = columnas[0]
+                try:
+                    valor = float(columnas[1])  
+                    suma_por_letra[letra] = suma_por_letra.get(letra, 0) + valor
+                except ValueError:
+                    pass  
+
+    
+    resultado = sorted(suma_por_letra.items())
+    return resultado
+
+
+
+
+

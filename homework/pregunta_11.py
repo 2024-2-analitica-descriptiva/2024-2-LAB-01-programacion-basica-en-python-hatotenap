@@ -16,3 +16,25 @@ def pregunta_11():
 
 
     """
+
+    datos = 'files/input/data.csv'
+
+    suma_por_letra = {}
+
+    with open(datos, 'r', encoding='utf-8') as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split('\t')  
+            if len(columnas) > 3:  
+                try:
+                    valor_columna_2 = int(columnas[1])  
+                
+                    letras_columna_4 = [letra.strip() for letra in columnas[3].replace(',', ' ').split()]
+                    for letra in letras_columna_4:
+                        suma_por_letra[letra] = suma_por_letra.get(letra, 0) + valor_columna_2
+                except ValueError:
+                    pass  
+
+
+    suma_por_letra_ordenado = dict(sorted(suma_por_letra.items()))
+
+    return(suma_por_letra_ordenado)

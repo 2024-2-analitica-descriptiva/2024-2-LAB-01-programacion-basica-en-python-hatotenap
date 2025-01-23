@@ -14,3 +14,11 @@ def pregunta_01():
     214
 
     """
+
+    datos = 'files/input/data.csv'  
+
+    suma_columna2 = sum(
+    float(line.split('\t')[1]) for line in open(datos, 'r', encoding='utf-8')
+    if len(line.split('\t')) > 1 and line.split('\t')[1].replace('.', '', 1).isdigit()
+)
+    return suma_columna2
